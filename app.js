@@ -25,7 +25,7 @@ form.addEventListener('submit', async (event) => {
     });
     if (!response.ok) throw new Error('Webhook 응답 오류');
     const result = await response.json();
-    answerCard.innerHTML = ` + "`" + `<b>\${result.category}</b><p>${result.answer}</p><small>중요도: ${result.priority}</small>` + "`" + `;
+        answerCard.innerHTML = \`<b>\${result.category}</b><p>\${result.answer}</p><small>중요도: \${result.priority}</small>\`;
   } catch (error) {
     answerCard.textContent = '연결에 실패했습니다. Webhook URL을 확인하세요.';
     console.error(error);
