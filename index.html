@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10182f" />
+  <meta name="description" content="Agentic AI Studio — 7주 동안 7개의 AI Agent를 만드는 실습 중심 강좌" />
+  <title>Agentic AI Studio · 7개의 AI Agent 만들기</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Agentic AI Studio 홈">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span><strong>Agentic</strong><small>AI STUDIO</small></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="status-dot"><i></i> <span id="saveStatus">로컬 저장</span></span>
+        <button class="auth-button" id="authButton" type="button">로그인</button>
+        <button class="icon-button" id="resetProgress" type="button" title="진행률 초기화" aria-label="진행률 초기화">↻</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section-pad">
+        <div class="hero-copy">
+          <div class="eyebrow"><span>7 WEEKS</span><span class="eyebrow-line"></span><span>BUILD, TEST, IMPROVE</span></div>
+          <h1>AI를 공부하지 않습니다.<br><em>매주 AI 직원을 한 명씩 채용합니다.</em></h1>
+          <p class="hero-description">설계 → 지시 → 테스트 → 실패 원인 분석 → 개선.<br />n8n과 Codex를 사용해 매주 하나의 작동하는 서비스를 출시합니다.</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="startLearning" type="button">첫 실습 시작하기 <span>↗</span></button>
+            <button class="text-button" id="showRoadmap" type="button">7주 로드맵 보기 <span>↓</span></button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="에이전트 시스템 흐름">
+          <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+          <div class="agent-core"><span class="core-kicker">AGENT</span><strong>GOAL</strong><strong>→ ACTION</strong><span class="core-status">● READY TO BUILD</span></div>
+          <div class="orbit-chip chip-user"><span class="chip-icon">01</span><b>USER</b><small>질문 / 이벤트</small></div>
+          <div class="orbit-chip chip-tools"><span class="chip-icon">02</span><b>TOOLS</b><small>데이터 / API</small></div>
+          <div class="orbit-chip chip-memory"><span class="chip-icon">03</span><b>MEMORY</b><small>맥락 / 상태</small></div>
+          <div class="visual-caption">MODEL + STATE + TOOLS<br /><span>THE AGENT LOOP</span></div>
+        </div>
+      </section>
+
+      <section class="stats section-pad" aria-label="강좌 지표">
+        <div><strong>07</strong><span>차시</span></div><div><strong>20:80</strong><span>이론 : 실습</span></div><div><strong>07</strong><span>완성 에이전트</span></div><div><strong>01</strong><span>최종 시스템</span></div>
+      </section>
+
+      <section class="workspace section-pad" id="roadmap">
+        <aside class="sidebar">
+          <div class="sidebar-heading"><span class="label">CURRICULUM</span><span class="progress-text"><b id="completedCount">0</b> / 7 완료</span></div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <nav id="lessonNav" aria-label="차시 목록"></nav>
+          <div class="sidebar-tip"><span class="tip-icon">✦</span><div><b>이번 주의 원칙</b><p>Read는 자유롭게.<br />Write는 조심스럽게.</p></div></div>
+        </aside>
+
+        <section class="lesson-panel" aria-live="polite">
+          <div class="lesson-header">
+            <div><div class="lesson-kicker" id="lessonKicker">01 / 07 · FOUNDATION</div><h2 id="lessonTitle"></h2><p id="lessonSubtitle"></p></div>
+            <div class="completion-badge" id="completionBadge"><span>○</span> 진행 전</div>
+          </div>
+          <div class="lesson-grid">
+            <article class="concept-card"><div class="card-top"><span class="card-label">TODAY'S CONCEPT</span><span class="theory-pill">THEORY 20%</span></div><h3 id="conceptTitle"></h3><p id="conceptText"></p><div class="flow" id="flowDiagram"></div></article>
+            <article class="build-card"><div class="card-top"><span class="card-label">BUILD SESSION</span><span class="practice-pill">PRACTICE 80%</span></div><div class="build-project"><span class="project-index" id="projectIndex">01</span><div><span class="mini-label">PROJECT</span><h3 id="projectTitle"></h3></div></div><p id="projectDescription"></p><div class="build-meta"><span>◷ 약 80분</span><span>▣ n8n + Codex</span></div></article>
+          </div>
+          <div class="lesson-tabs" role="tablist"><button class="tab active" data-tab="steps" role="tab">실습 순서</button><button class="tab" data-tab="mission" role="tab">미션 & 테스트</button><button class="tab" data-tab="notes" role="tab">내 메모</button></div>
+          <div class="tab-content" id="tabContent"></div>
+        </section>
+      </section>
+
+      <section class="glossary section-pad" id="glossary">
+        <div class="section-heading"><div><span class="label">FIELD GUIDE</span><h2>에이전트 설계 언어</h2></div><p>7주 동안 딱 하나씩 추가되는<br />핵심 능력들입니다.</p></div>
+        <div class="glossary-grid" id="glossaryGrid"></div>
+      </section>
+    </main>
+
+    <footer class="footer section-pad"><div class="brand footer-brand"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span><strong>Agentic</strong><small>AI STUDIO</small></span></div><p>매주 하나의 AI 서비스를 출시하는 수업</p><span class="footer-code">BUILD / TEST / IMPROVE</span></footer>
+  </div>
+  <div class="auth-modal" id="authModal" aria-hidden="true">
+    <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="auth-close" id="authClose" type="button" aria-label="닫기">×</button>
+      <span class="label">ACCOUNT / SYNC</span>
+      <h2 id="authTitle">학습 기록 동기화</h2>
+      <p>로그인하면 진행률과 메모가 Firebase에 저장되어 다른 기기에서도 이어집니다.</p>
+      <form id="authForm">
+        <label>이메일<input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <label>비밀번호<input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="6자 이상"></label>
+        <div class="auth-actions"><button class="primary-button" type="submit">이메일로 로그인</button><button class="auth-secondary" id="signupButton" type="button">회원가입</button></div>
+      </form>
+      <div class="auth-divider"><span>또는</span></div>
+      <button class="google-button" id="googleButton" type="button">G <span>Google 계정으로 계속</span></button>
+      <p class="auth-help">Firebase Console에서 Email/Password 또는 Google 제공업체가 활성화되어 있어야 합니다.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
